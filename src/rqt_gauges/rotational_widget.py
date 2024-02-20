@@ -10,18 +10,18 @@ from rqt_py_common.topic_completer import TopicCompleter
 from .utils import generate_field_evals, get_topic_type
 
 
-class SteeringWheelWidget(QWidget):
+class RotationalWidget(QWidget):
 
     def __init__(self, node):
         super().__init__()
-        self.setObjectName('SteeringWheel_widget')
+        self.setObjectName('Rotational_widget')
 
         self.node = node
         self.sub = None
 
         _, package_path = get_resource('packages', 'rqt_gauges')
         ui_file = os.path.join(package_path, 'share', 'rqt_gauges',
-                               'resource', 'steering_wheel.ui')
+                               'resource', 'rotational.ui')
         loadUi(ui_file, self)
 
         self.topic_to_subscribe.setNode(self.node)
@@ -33,18 +33,32 @@ class SteeringWheelWidget(QWidget):
         # Objects Properties
         self.max_value.setAlignment(Qt.AlignCenter)
 
-        self.max_value.setPlaceholderText(str(self.steering_wheel_gauge.maxValue))
+        self.max_value.setPlaceholderText(str(self.rotational_gauge.maxValue))
 
         self.max_value.textChanged.connect(self.updateMaxValue)
         self.subscribe_button.pressed.connect(self.updateSubscription)
+        self.rotational_gauge.updateValueSignal.connect(self.updateValue)
+
+    def dragEnterEvent(self, event):
+        event.accept()
+
+    def dropEvent(self, event):
+        if event.mimeData().hasText():
+            topic_name = str(event.mimeData().text())
+        else:
+            droped_item = event.source().selectedItems()[0]
+            topic_name = str(droped_item.data(0, Qt.UserRole))
+        self.topic_to_subscribe.setText(topic_name)
+        self.updateSubscription()
+        event.accept()
 
     @pyqtSlot()
     def updateMaxValue(self):
         new_max_value = self.max_value.toPlainText()
         if new_max_value.isnumeric():
-            self.steering_wheel_gauge.setMaxValue(int(new_max_value))
+            self.rotational_gauge.setMaxValue(int(new_max_value))
         else:
-            self.steering_wheel_gauge.setMaxValue(45)
+            self.rotational_gauge.setMaxValue(45)
 
     @pyqtSlot()
     def updateSubscription(self):
@@ -61,17 +75,21 @@ class SteeringWheelWidget(QWidget):
             self.sub = self.node.create_subscription(
                 data_class,
                 topic_name,
-                self.steering_wheel_callback,
+                self.rotational_callback,
                 10)
 
-    def steering_wheel_callback(self, msg):
+    @pyqtSlot(float)
+    def updateValue(self, value):
+        self.rotational_gauge.updateValue(value)
+
+    def rotational_callback(self, msg):
         value = msg
         for f in self.field_evals:
             value = f(value)
         if value is not None:
             if type(value) == int or type(value) == float or type(value) == str:
-                self.steering_wheel_gauge.updateValue(float(value))
+                self.rotational_gauge.updateValueSignal.emit(float(value))
             else:
-                self.steering_wheel_gauge.updateValue(0)
+                self.rotational_gauge.updateValueSignal.emit(0.0)
         else:
-            self.steering_wheel_gauge.updateValue(0)
+            self.rotational_gauge.updateValueSignal.emit(0.0)
