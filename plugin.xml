@@ -1,7 +1,7 @@
 <library path="src">
-  <class name="Speedometer" type="rqt_gauges.speedometer.Speedometer" base_class_type="rqt_gui_py::Plugin">
+  <class name="Dial" type="rqt_gauges.dial.Dial" base_class_type="rqt_gui_py::Plugin">
     <description>
-      A Visualization tool that shows the "speed" according to a topic.
+      A dial visualization tool according to a topic.
     </description>
     <qtgui>
       <group>
@@ -9,14 +9,14 @@
         <icon type="theme">folder</icon>
         <statustip>Plugins related to visualization.</statustip>
       </group>
-      <label>Speedometer</label>
+      <label>Dial</label>
       <icon type="theme">utilities-system-monitor</icon>
       <statustip>Gauges visualization tool.</statustip>
     </qtgui>
   </class>
-  <class name="SteeringWheel" type="rqt_gauges.steering_wheel.SteeringWheel" base_class_type="rqt_gui_py::Plugin">
+  <class name="Rotational" type="rqt_gauges.rotational.Rotational" base_class_type="rqt_gui_py::Plugin">
     <description>
-      A Visualization tool to keep track of the steering angle.
+      A rotational visualization tool.
     </description>
     <qtgui>
       <group>
@@ -24,14 +24,14 @@
         <icon type="theme">folder</icon>
         <statustip>Plugins related to visualization.</statustip>
       </group>
-      <label>Steering Wheel</label>
+      <label>Rotational</label>
       <icon type="theme">utilities-system-monitor</icon>
       <statustip>Gauges visualization tool.</statustip>
     </qtgui>
   </class>
-  <class name="ThrottleBrakePedals" type="rqt_gauges.throttle_brake_pedals.ThrottleBrakePedals" base_class_type="rqt_gui_py::Plugin">
+  <class name="BarGauge" type="rqt_gauges.bar_gauge.BarGauge" base_class_type="rqt_gui_py::Plugin">
     <description>
-      A Visualization tool that shows how much of the throttle and brake pedals are being pressed (0-1).
+      A bar visualization tool.
     </description>
     <qtgui>
       <group>
@@ -39,7 +39,7 @@
         <icon type="theme">folder</icon>
         <statustip>Plugins related to visualization.</statustip>
       </group>
-      <label>Throttle and Brake Pedals</label>
+      <label>Bar gauge</label>
       <icon type="theme">utilities-system-monitor</icon>
       <statustip>Gauges visualization tool.</statustip>
     </qtgui>
