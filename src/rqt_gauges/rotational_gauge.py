@@ -1,17 +1,14 @@
 import math
 
-from PyQt5.QtCore import QRect, Qt
+from PyQt5.QtCore import pyqtSignal, QRect, Qt
 from PyQt5.QtGui import QBrush, QColor, QFont, QFontMetrics, QPainter, QPen
 from PyQt5.QtWidgets import QWidget
 
 
-class SteeringWheelGauge(QWidget):
-    # This class creates a gauge object that contains several elements such as a needle,
-    # big and small scales and different circles painted with different colors to look
-    # like a car Speedometer. It has the ability to modify the minimum and maximum values
-    # of the gauge and the units the numbers are displaying. The class contains
-    # methods used to modify the values explained before, the marked number of the gauge
-    # and the whole design as well.
+class RotationalGauge(QWidget):
+    # This class creates a rotational gauge.
+
+    updateValueSignal = pyqtSignal(float)
 
     def __init__(self, parent=None):
         # Constructor method of the class, initializes all the variables needed to create
@@ -19,6 +16,7 @@ class SteeringWheelGauge(QWidget):
 
         super().__init__(parent)
 
+        self.raw_value = 0
         self.value = 0
         self.width = 400
         self.height = 400
@@ -95,6 +93,7 @@ class SteeringWheelGauge(QWidget):
         # Updates the value that the gauge is indicating.
         # Args:
         #   value: Value to update the gauge with.
+        self.raw_value = value
         value = max(value, self.minValue)
         value = min(value, self.maxValue)
         self.value = value
@@ -159,7 +158,7 @@ class SteeringWheelGauge(QWidget):
         # Create Gauge Text
         pen.setColor(QColor(self.text_color))
         painter.setPen(pen)
-        painter.drawText(rect, Qt.AlignCenter, f'{self.value}{self.suffix}')
+        painter.drawText(rect, Qt.AlignCenter, f'{self.raw_value:.2f}{self.suffix}')
         # End Painter
         painter.end()
 
