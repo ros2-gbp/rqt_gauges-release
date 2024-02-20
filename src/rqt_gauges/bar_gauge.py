@@ -1,16 +1,16 @@
 from qt_gui.plugin import Plugin
 
-from .speedometer_widget import SpeedometerWidget
+from .bar_gauge_widget import BarGaugeWidget
 
 
-class Speedometer(Plugin):
+class BarGauge(Plugin):
 
     def __init__(self, context):
         super().__init__(context)
-        self.setObjectName('Speedometer')
+        self.setObjectName('BarGauge')
 
         self._context = context
         self._node = context.node
 
-        self._widget = SpeedometerWidget(self._node)
+        self._widget = BarGaugeWidget(self._node)
         context.add_widget(self._widget)
