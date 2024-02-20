@@ -4,18 +4,18 @@ package_name = 'rqt_gauges'
 
 setup(
     name=package_name,
-    version='0.0.1',
+    version='0.0.2',
     packages=[package_name],
     package_dir={'': 'src'},
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name + '/resource',
-            ['resource/speedometer.ui']),
+            ['resource/dial.ui']),
         ('share/' + package_name + '/resource',
-            ['resource/steering_wheel.ui']),
+            ['resource/rotational.ui']),
         ('share/' + package_name + '/resource',
-            ['resource/throttle_brake_pedals.ui']),
+            ['resource/bar_gauge.ui']),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name, ['plugin.xml']),
     ],
