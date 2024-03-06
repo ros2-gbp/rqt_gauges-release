@@ -1,0 +1,47 @@
+<library path="src">
+  <class name="Dial" type="rqt_gauges.dial.Dial" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      A dial visualization tool according to a topic.
+    </description>
+    <qtgui>
+      <group>
+        <label>Visualization</label>
+        <icon type="theme">folder</icon>
+        <statustip>Plugins related to visualization.</statustip>
+      </group>
+      <label>Dial</label>
+      <icon type="theme">utilities-system-monitor</icon>
+      <statustip>Gauges visualization tool.</statustip>
+    </qtgui>
+  </class>
+  <class name="Rotational" type="rqt_gauges.rotational.Rotational" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      A rotational visualization tool.
+    </description>
+    <qtgui>
+      <group>
+        <label>Visualization</label>
+        <icon type="theme">folder</icon>
+        <statustip>Plugins related to visualization.</statustip>
+      </group>
+      <label>Rotational</label>
+      <icon type="theme">utilities-system-monitor</icon>
+      <statustip>Gauges visualization tool.</statustip>
+    </qtgui>
+  </class>
+  <class name="BarGauge" type="rqt_gauges.bar_gauge.BarGauge" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      A bar visualization tool.
+    </description>
+    <qtgui>
+      <group>
+        <label>Visualization</label>
+        <icon type="theme">folder</icon>
+        <statustip>Plugins related to visualization.</statustip>
+      </group>
+      <label>Bar gauge</label>
+      <icon type="theme">utilities-system-monitor</icon>
+      <statustip>Gauges visualization tool.</statustip>
+    </qtgui>
+  </class>
+</library>
