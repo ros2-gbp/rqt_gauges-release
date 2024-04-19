@@ -1,1 +1,1 @@
-{"base": "f1f0f8b", "parent": "debian/rolling/rqt_gauges", "previous": "0d06917", "trim": "", "trimbase": ""}
+{"base": "d74bb78", "parent": "debian/jazzy/rqt_gauges", "previous": "5f8bb53", "trim": "", "trimbase": ""}
