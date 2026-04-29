@@ -1,0 +1,12 @@
+Source: ros-lyrical-rqt-gauges
+Section: misc
+Priority: optional
+Maintainer: Eloy Bricneo <eloy.briceno@ekumenlabs.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-flake8 <!nocheck>, ros-lyrical-ament-xmllint <!nocheck>, ros-lyrical-ros-workspace, python3-all, python3-setuptools, dh-python
+Homepage: https://index.ros.org/p/rqt_gauges/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-rqt-gauges
+Architecture: any
+Depends: ${python3:Depends}, ${misc:Depends}, ros-lyrical-ament-index-python, ros-lyrical-qt-gui, ros-lyrical-qt-gui-py-common, ros-lyrical-rclpy, ros-lyrical-rqt-gui, ros-lyrical-rqt-gui-py, ros-lyrical-ros-workspace
+Description: Visualization plugin for several sensors.
